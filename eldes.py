@@ -158,7 +158,9 @@ class EldesClient:
     
     def get_temperatures(self, location):
         imei = self._get_imei(location)
+        #print(imei)
         r = self._post('device/temperatures?imei='+imei,{})
+        #print(r)
         if r.status_code == 200:
             return r.json()
         else:
