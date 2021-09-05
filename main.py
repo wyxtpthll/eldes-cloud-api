@@ -25,8 +25,10 @@ devid  = config.get("eldes", "devid")
 client = eldes.EldesClient(username=usr ,password=psw ,hostDeviceId=devid , refresh_token_file="refresh_token.txt")
 
 #print(client.get_devices)
-print(client.is_partition_armed(location="Sodas", partition="SodoNamas"))
+#print(client.is_partition_armed(location="Sodas", partition="SodoNamas"))
 rez = client.get_temperatures(location="Sodas")
-print(rez)
-print("ok")
+print(rez["temperatureDetailsList"][0]["temperature"])
+#rez = client.get_events(location="Sodas")
+#print(rez)
+#print("ok")
 

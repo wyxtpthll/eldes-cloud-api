@@ -114,6 +114,7 @@ class EldesClient:
     def get_devices(self):
         if self.last_update["devices"] < datetime.datetime.now() - datetime.timedelta(minutes = 1):
             r = self._get("device/list?showSupportMessages=true")
+            #print(r.text)
             self.devices = json.loads(r.text)
             self.last_update["devices"] = datetime.datetime.now()
             return self.devices
@@ -173,3 +174,24 @@ class EldesClient:
             return r.json()
         else:
             raise ApiError(r.status_code)
+
+    def get_events(self, location):
+        imei = self._get_imei(location)
+        #print(imei)
+        #r = self._post('device/event/list', {})
+        #r = self._post('device/partition/list?imei='+imei, {})
+        #r = self._post('device/system-fault/list/'+imei, {})
+        #r = self._get('device/list')
+        #r = self._get('auth/token')
+        #r = self.httpsession.get('https://cloud.eldesalarms.com:8083/location/'+imei)
+        r = self.httpsession.get('https://cloud.eldesalarms.com:8083/location/')
+        #r = self.httpsession.get('https://cloud.eldesalarms.com:8083/assets/dist/eldes.js')
+        #r = self._get('device/list-zones/'+imei)
+        #print(r)
+        print(r.text)
+        #if r.status_code == 200:
+        #    return r.json()
+        #else:
+        #    raise ApiError(r.status_code)
+
+
